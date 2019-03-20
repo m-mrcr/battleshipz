@@ -30,4 +30,11 @@ class ShipTest < MiniTest::Test
     assert_equal 1, @cruiser.health
   end
 
+  def test_it_can_sink
+    @cruiser.hit
+    @cruiser.hit
+    @cruiser.hit
+    assert @cruiser.sunk?
+  end
+
 end
