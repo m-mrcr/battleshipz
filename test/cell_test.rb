@@ -19,7 +19,11 @@ class CellTest < MiniTest::Test
   end
 
   def test_cell_initiates_with_no_ship
-    assert_nil @cell.ship 
+    assert_nil @cell.ship
+  end
+
+  def test_cell_initiates_as_empty
+    assert @cell.empty?
   end
 
 end
