@@ -6,7 +6,7 @@ require './lib/ship'
 class ShipTest < MiniTest::Test
 
   def setup
-    cruiser = Ship.new("Cruiser", 3)
+    @cruiser = Ship.new("Cruiser", 3)
   end
 
   def test_it_exists
@@ -22,5 +22,7 @@ class ShipTest < MiniTest::Test
   def test_it_initiates_as_unsunk
     refute @cruiser.sunk?
   end
+
+  
 
 end
