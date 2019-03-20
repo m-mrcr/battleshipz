@@ -8,6 +8,7 @@ class CellTest < MiniTest::Test
 
   def setup
     @cell = Cell.new("B4")
+    @cruiser = Ship.new("Cruiser", 3)
   end
 
   def test_it_exists
@@ -24,6 +25,11 @@ class CellTest < MiniTest::Test
 
   def test_cell_initiates_as_empty
     assert @cell.empty?
+  end
+
+  def test_ship_can_be_placed
+    @cell.place_ship(@cruiser)
+    assert_equal @cruiser, @cell.ship
   end
 
 end
