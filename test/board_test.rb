@@ -24,6 +24,7 @@ class BoardClass < MiniTest::Test
   end
 
   def test_it_has_cell_objects_in_hash
+    binding.pry
     assert @board.cells.values.all? {|value| value.class == Cell}
   end
 
