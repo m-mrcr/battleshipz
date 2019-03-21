@@ -24,8 +24,15 @@ class BoardClass < MiniTest::Test
   end
 
   def test_it_has_cell_objects_in_hash
-    binding.pry
     assert @board.cells.values.all? {|value| value.class == Cell}
+  end
+
+  def test_it_has_valid_coordinates
+    assert @board.valid_coordinate?("A1")
+    assert @board.valid_coordinate?("D4")
+    refute @board.valid_coordinate?("A5")
+    refute @board.valid_coordinate?("E1")
+    refute @board.valid_coordinate?("A22")
   end
 
 end
