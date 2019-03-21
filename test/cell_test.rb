@@ -35,4 +35,11 @@ class CellTest < MiniTest::Test
   def test_cell_fire_upon_question_defaults_to_false
     refute @cell.fire_upon?
   end
+
+  def test_a_placed_ship_loses_health_when_fired_upon
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    # @cruiser.hit => not sure on this one...
+    assert_equal 2, @cell.ship.health
+  end
 end
