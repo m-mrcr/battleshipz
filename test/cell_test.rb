@@ -32,4 +32,7 @@ class CellTest < MiniTest::Test
     assert_equal @cruiser, @cell.ship
   end
 
+  def test_cell_fire_upon_question_defaults_to_false
+    refute @cell.fire_upon?
+  end
 end
