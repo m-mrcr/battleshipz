@@ -32,8 +32,8 @@ class CellTest < MiniTest::Test
     assert_equal @cruiser, @cell.ship
   end
 
-  def test_cell_fire_upon_question_defaults_to_false
-    refute @cell.fire_upon?
+  def test_cell_fired_upon_defaults_to_false
+    refute @cell.fired_upon?
   end
 
   def test_a_placed_ship_loses_health_when_fired_upon
@@ -41,5 +41,10 @@ class CellTest < MiniTest::Test
     @cell.fire_upon
     # @cruiser.hit => not sure on this one...
     assert_equal 2, @cell.ship.health
+  end
+
+  def test_fired_upon_returns_true_after_fire_upon
+    @cell.fire_upon
+    assert_equal true, @cell.fired_upon?
   end
 end
