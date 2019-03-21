@@ -7,8 +7,9 @@ require './lib/cell'
 class CellTest < MiniTest::Test
 
   def setup
-    @cell = Cell.new("B4")
+    @cell    = Cell.new("B4")
     @cruiser = Ship.new("Cruiser", 3)
+    @cell_1  = Cell.new("B4")
   end
 
   def test_it_exists
@@ -46,5 +47,9 @@ class CellTest < MiniTest::Test
   def test_fired_upon_returns_true_after_fire_upon
     @cell.fire_upon
     assert_equal true, @cell.fired_upon?
+  end
+
+  def test_cell_has_not_been_fired_on
+    assert_equal ".", @cell_1.render
   end
 end
