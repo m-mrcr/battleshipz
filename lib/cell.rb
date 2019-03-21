@@ -20,9 +20,5 @@ class Cell
     @hit
   end
 
-  def fire_upon
-    @hit = true
-    @ship && @ship.hit
-  end
 
 end
