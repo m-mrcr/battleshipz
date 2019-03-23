@@ -46,24 +46,16 @@ class Board
 
   def consecutive?(coordinates)
     orientation = get_orientation(coordinates)
-    letters = coordinates.map { |c| c[0].ord }
-    numbers = coordinates.map { |c| c[1].to_i }
+    letters = coordinates.map {|c| c[0].ord}
+    numbers = coordinates.map {|c| c[1].to_i}
     if orientation == :horizontal
-      numbers.each_cons(2) do |a, b|
-        if b != a + 1
-          return false
-        end
-      end
-      return true
+      numbers.each_cons(2) {|a, b| return false if b != a + 1}
+      true
     elsif orientation == :vertical
-      letters.each_cons(2) do |a, b|
-        if b != a + 1
-          return false
-        end
-      end
-      return true
+      letters.each_cons(2) {|a, b| return false if b != a + 1}
+      true
     else
-      return false
+      false
     end
   end
 
