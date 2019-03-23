@@ -21,7 +21,8 @@ class Board
   def valid_placement?(ship, coordinates)
     if ship.length != coordinates.length ||
       !coordinates.map {|c| valid_coordinate?(c)} ||
-      !consecutive?(coordinates)
+      !consecutive?(coordinates) ||
+      overlapping?(coordinates)
       false
     else
       true
@@ -59,7 +60,19 @@ class Board
     end
   end
 
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates) == true
+      coordinates.map do |c|
+        @cells[c].place_ship(ship)
+      end
+    else
+      p "Invalid Placement."
+    end
+  end
 
-
+  def overlapping?(coordinates)
+    coordinates.any? {|c| return true if !@cells[c].empty?}
+    false
+  end
 
 end

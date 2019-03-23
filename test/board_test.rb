@@ -11,6 +11,9 @@ class BoardClass < MiniTest::Test
     @board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
+    @cell_1 = @board.cells["A1"]
+    @cell_2 = @board.cells["A2"]
+    @cell_3 = @board.cells["A3"]
   end
 
   def test_it_exists
@@ -62,6 +65,21 @@ class BoardClass < MiniTest::Test
     refute @board.valid_placement?(@submarine, ["C1", "B1"])
     assert @board.valid_placement?(@submarine, ["A1", "A2"])
     assert @board.valid_placement?(@cruiser, ["B1", "C1", "D1"])
+  end
+
+  def test_it_can_place_a_ship
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    assert_equal @cruiser, @cell_1.ship
+    assert_equal @cruiser, @cell_2.ship
+    assert_equal @cruiser, @cell_3.ship
+    assert @cell_3.ship == @cell_2.ship
+  end
+
+  def test_it_will_not_allow_for_overlapping_ships
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    refute @board.valid_placement?(@submarine, ["A1", "B1"])
   end
 
 end
