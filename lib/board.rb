@@ -8,8 +8,8 @@ class Board
   end
 
   def create_cells
-    numbers = (1..4)
-    letters = ("A".."D")
+    numbers = (1..9)
+    letters = ("A".."I")
     letters.each {|letter|
     numbers.each {|number|
       coordinate = "#{letter}#{number}"
@@ -73,6 +73,18 @@ class Board
   def overlapping?(coordinates)
     coordinates.any? {|c| return true if !@cells[c].empty?}
     false
+  end
+
+  def render(show_ships = true)
+    rows = @cells.keys.collect {|r| r[0]}.uniq
+    columns = @cells.keys.collect {|c| c[1]}.uniq
+    header = " #{columns.join(' ')} \n"
+    body = ""
+    rows.each { |r| body += "#{r} "
+      columns.each { |c| body += "#{@cells["#{r}#{c}"].render(show_ships)} "}
+      body += "\n"
+    }
+    header + body
   end
 
 end

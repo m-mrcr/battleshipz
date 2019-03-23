@@ -26,9 +26,9 @@ class Cell
     @ship && @ship.hit
   end
 
-  def render(played = false)
+  def render(show_ships = false)
     if fired_upon? == false
-      played && @ship ? 'S' : '.'
+      show_ships && @ship ? 'S' : '.'
     elsif @ship
       @ship.sunk? ? 'X' : 'H'
     else

@@ -94,8 +94,9 @@ class BoardClass < MiniTest::Test
                  "B . . . . \n" +
                  "C . . . . \n" +
                  "D . . . . \n"
-
     assert_equal expected_1, @board.render
+    
+    @board.place(@cruiser, ["A1", "A2", "A3"])
     assert_equal expected_2, @board.render
   end
 
