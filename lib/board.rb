@@ -66,7 +66,7 @@ class Board
         @cells[c].place_ship(ship)
       end
     else
-      p "Invalid Placement."
+      p "Invalid Placement"
     end
   end
 

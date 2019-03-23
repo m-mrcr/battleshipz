@@ -82,4 +82,21 @@ class BoardClass < MiniTest::Test
     refute @board.valid_placement?(@submarine, ["A1", "B1"])
   end
 
+  def test_it_will_render_the_board_properly
+    expected_1 = "  1 2 3 4 \n" +
+                 "A . . . . \n" +
+                 "B . . . . \n" +
+                 "C . . . . \n" +
+                 "D . . . . \n"
+
+    expected_2 = "  1 2 3 4 \n" +
+                 "A S S S . \n" +
+                 "B . . . . \n" +
+                 "C . . . . \n" +
+                 "D . . . . \n"
+
+    assert_equal expected_1, @board.render
+    assert_equal expected_2, @board.render
+  end
+
 end
