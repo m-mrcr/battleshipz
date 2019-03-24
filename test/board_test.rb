@@ -5,7 +5,7 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 
-class BoardClass < MiniTest::Test
+class BoardTest < MiniTest::Test
 
   def setup
     @board = Board.new
@@ -95,7 +95,7 @@ class BoardClass < MiniTest::Test
                  "C . . . . \n" +
                  "D . . . . \n"
     assert_equal expected_1, @board.render
-    
+
     @board.place(@cruiser, ["A1", "A2", "A3"])
     assert_equal expected_2, @board.render
   end
