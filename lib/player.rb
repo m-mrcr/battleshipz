@@ -19,20 +19,20 @@ class Player
     @ships.each do |ship|
 
       if name == :computer
-      potential_coordinates = []
-          loop do
-            potential_coordinates = @board.cells.keys.sample(ship.length)
-            if @board.valid_placement?(ship, potential_coordinates)
-              @board.place(ship, potential_coordinates)
-              break
-            end #ends if
-          end #ends loop
+        potential_coordinates = []
+        loop do
+          potential_coordinates = @board.cells.keys.sample(ship.length)
+          if @board.valid_placement?(ship, potential_coordinates)
+            @board.place(ship, potential_coordinates)
+            break
+          end #ends if
+        end #ends loop
 
       elsif name == :player
         puts "#{@board.render} \n"
         loop do
           puts "Enter coordinates for the #{ship.name} (#{ship.length} spaces): \n"
-          puts "Example: A1 A2 A3 \n"
+          puts "Example: A1 A2 A3"
           input = gets.chomp.upcase.split(" ")
           puts "\n"
           if @board.valid_placement?(ship, input)
@@ -42,13 +42,9 @@ class Player
           else
             puts "Those are invalid coordinates. Please try again. \n"
           end #ends if
-
         end #ends loop
-
       end #ends if
-
     end #ends each
-
   end #ends method
 
 end
