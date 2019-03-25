@@ -39,9 +39,4 @@ class GameSetup
     @player.place_ships(:player)
   end
 
-  def play_game
-    game =
-  end
-
-
 end

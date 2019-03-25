@@ -5,4 +5,8 @@ class GamePlay
     @computer = computer
   end
 
+  def show_boards
+    
+  end
+
 end
