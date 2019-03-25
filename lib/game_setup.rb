@@ -9,8 +9,8 @@ class GameSetup
   end
 
   def welcome
-    p "Welcome to BATTLESHIP"
-    p "Enter p to play. Enter q to Quit"
+    puts "Welcome to BATTLESHIP"
+    puts "Enter p to play. Enter q to Quit"
     input = gets.chomp.upcase
     if input == "P"
       start
@@ -31,10 +31,11 @@ class GameSetup
   end
 
   def place_player_ships
-    p "I have laid out my ships on the grid."
-    p "You now need to lay out your #{@player.ships.length} ships"
-
-
+    puts "\nI have laid out my ships on the grid."
+    puts "You now need to lay out your #{@player.ships.length} ships."
+    puts "\n"
+    @player.place_ships(:player)
   end
+
 
 end
