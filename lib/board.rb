@@ -75,7 +75,7 @@ class Board
     false
   end
 
-  def render(show_ships = true)
+  def render(show_ships = false)
     rows = @cells.keys.collect {|r| r[0]}.uniq
     columns = @cells.keys.collect {|c| c[1]}.uniq
     header = "  #{columns.join(' ')} \n"

@@ -26,6 +26,7 @@ class GameSetup
     place_computer_ships
     place_player_ships
     @gameplay.show_boards
+    @gameplay.player_chooses_coordinate
   end
 
   def place_computer_ships
