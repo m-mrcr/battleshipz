@@ -1,8 +1,11 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
-require './lib/game_setup'
+require './lib/ship'
+require './lib/cell'
+require './lib/board'
 require './lib/player'
+require './lib/game_setup'
 
 class GameSetupTest < MiniTest::Test
 
