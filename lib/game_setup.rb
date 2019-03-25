@@ -6,6 +6,7 @@ class GameSetup
   def initialize
     @computer = Player.new(:computer)
     @player = Player.new(:player)
+    @gameplay = GamePlay.new(@player, @computer)
   end
 
   def welcome
@@ -24,6 +25,7 @@ class GameSetup
   def start
     place_computer_ships
     place_player_ships
+    @gameplay.show_boards
   end
 
   def place_computer_ships
@@ -32,9 +34,13 @@ class GameSetup
 
   def place_player_ships
     puts "\nI have laid out my ships on the grid."
-    puts "You now need to lay out your #{@player.ships.length} ships."
+    puts "You now need to lay out your #{@player.ships.length} ships.\n"
     puts "\n"
     @player.place_ships(:player)
+  end
+
+  def play_game
+    game =
   end
 
 

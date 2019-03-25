@@ -19,8 +19,7 @@ class Cell
   def fired_upon?
     @hit
   end
-#this still allows for firing on the same cell
-#lets get this so the cell cannot be "hit" twice
+
   def fire_upon
     @hit = true
     @ship && @ship.hit

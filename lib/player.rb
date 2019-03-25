@@ -10,8 +10,7 @@ class Player
   end
 
   def add_ships
-    @ships = [ Ship.new("Submarine", 2),
-              Ship.new("Cruiser", 3) ]
+    @ships = [Ship.new("Submarine", 2), Ship.new("Cruiser", 3)]
   end
 
   def place_ships(name)
@@ -31,8 +30,9 @@ class Player
       elsif name == :player
         puts "#{@board.render} \n"
         loop do
-          puts "Enter coordinates for the #{ship.name} (#{ship.length} spaces): \n"
+          puts "Enter coordinates for the #{ship.name} (#{ship.length} spaces):"
           puts "Example: A1 A2 A3"
+          puts "\n"
           input = gets.chomp.upcase.split(" ")
           puts "\n"
           if @board.valid_placement?(ship, input)
@@ -40,7 +40,8 @@ class Player
             @board.render(true)
             break
           else
-            puts "Those are invalid coordinates. Please try again. \n"
+            puts "Those are invalid coordinates. Please try again."
+            puts "------------------------------------------------"
           end #ends if
         end #ends loop
       end #ends if
