@@ -7,6 +7,7 @@ class GameSetup
     @computer = Player.new(:computer)
     @player = Player.new(:player)
     @gameplay = GamePlay.new(@player, @computer)
+    @winner = winner
   end
 
   def welcome
@@ -29,8 +30,28 @@ class GameSetup
     loop do
       @gameplay.player_chooses_coordinate
       @gameplay.computer_chooses_coordinate
-      until 
+      until
+        winner
+      break
+    end
+    end_game_announcement
+    replay?
+  end
 
+  def winner
+    case winner
+    when @computer.ships.all? {|name_of_ship, ship| ship.sunk?}
+      @player
+    when @player.ships.all? {|name_of_ship, ship| ship.sunk?}
+      @computer
+  end #end of player won method
+
+  def end_game_announcement
+    if winner = @player
+      puts "\n ------------ \n \n Player Won \n \n ------------ \n"
+    elsif winner = @computer
+      puts "\n ------------ \n \n Player Lost \n \n ------------ \n"
+    end
   end
 
   def place_computer_ships
@@ -43,5 +64,17 @@ class GameSetup
     puts "\n"
     @player.place_ships(:player)
   end
+
+  def replay?
+    puts "Would you like to play again?"
+    puts "Type Yes or No"
+    input = gets.chomp.upcase
+    if input == "YES"
+      welcome
+    elsif input == "NO"
+      exit
+    else
+      p "INVALID INPUT"
+    end
 
 end
