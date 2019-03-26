@@ -14,7 +14,7 @@ class GameSetup
     puts "Enter p to play. Enter q to Quit"
     input = gets.chomp.upcase
     if input == "P"
-      start
+      play
     elsif input == "Q"
       exit
     else
@@ -22,11 +22,15 @@ class GameSetup
     end
   end
 
-  def start
+  def play
     place_computer_ships
     place_player_ships
     @gameplay.show_boards
-    @gameplay.player_chooses_coordinate
+    loop do
+      @gameplay.player_chooses_coordinate
+      @gameplay.computer_chooses_coordinate
+      until 
+
   end
 
   def place_computer_ships
