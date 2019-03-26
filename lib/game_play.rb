@@ -1,5 +1,8 @@
 class GamePlay
 
+  attr_reader :last_turn_player,
+              :last_turn_computer
+
   def initialize(player, computer)
     @player = player
     @computer = computer
@@ -8,28 +11,32 @@ class GamePlay
   end
 
   def show_boards
-    sleep(2)
+    sleep(1)
     puts "=============COMPUTER BOARD============="
+    puts "\n"
     puts @computer.board.render
+    puts "\n"
     puts "==============PLAYER BOARD=============="
+    puts "\n"
     puts @player.board.render(true)
+    puts "\n"
   end
 
-  def status(input)
-    status =  @computer.board.cells[input].render
+  def status(input, name)
+    status =  name.board.cells[input].render
     case status
     when 'H'
-      puts "Your shot on #{input} was a hit."
+      "was a hit."
     when 'M'
-      puts "Your shot on #{input} was a miss."
+      "was a miss."
     when 'X'
-      puts "Your shot on #{input} sunk a ship."
+      "sunk a ship."
     end
   end
 
   def player_chooses_coordinate
     puts "Enter the coordinate for your shot: \n"
-    input = gets.chomp.upcase.to_s
+    input = gets.chomp.upcase
     if @computer.board.cells[input].fired_upon?
       p "Please enter a valid coordinate: \n"
     else
@@ -39,12 +46,12 @@ class GamePlay
   end
 
   def computer_chooses_coordinate
-    input = @user.board.cells.sample(1)
-    unless @user.board.cells[input].fired_upon?
-      @user.board.cells[input].fire_upon
+    input = @player.board.cells.keys.sample(1).first
+    until @player.board.cells[input].fired_upon?
+      @player.board.cells[input].fire_upon
       @last_turn_computer = input
-      p "Your shot on #{@last_turn_player} was a #{status(@last_turn_player)}"
-      p "My show on #{@last_turn_computer} was a #{status(@last_turn_computer)}"
+      p "Your shot on #{@last_turn_player} #{status(@last_turn_player, @computer)}"
+      p "My shot on #{@last_turn_computer} #{status(@last_turn_computer, @player)}"
     end
     show_boards
   end

@@ -1,13 +1,14 @@
 class GameSetup
 
   attr_reader :computer,
-              :player
+              :player,
+              :winner
 
   def initialize
     @computer = Player.new(:computer)
     @player = Player.new(:player)
     @gameplay = GamePlay.new(@player, @computer)
-    @winner = winner
+    @winner = nil
   end
 
   def welcome
@@ -30,23 +31,26 @@ class GameSetup
     loop do
       @gameplay.player_chooses_coordinate
       @gameplay.computer_chooses_coordinate
-      until
-        winner
+      self.is_there_a_winner?
+    until
+        @winner != nil
       break
-    end
-    end_game_announcement
-    replay?
+      end
+    self.end_game
+    self.replay?
   end
 
-  def winner
-    case winner
-    when @computer.ships.all? {|name_of_ship, ship| ship.sunk?}
-      @player
-    when @player.ships.all? {|name_of_ship, ship| ship.sunk?}
-      @computer
-  end #end of player won method
+  def is_there_a_winner?
+    case 
+    when @computer.ships.all? {|ship| ship.sunk?} == true
+      @winner = @player
+    when @player.ships.all? {|ship| ship.sunk?} == true
+      @winner = @computer
+    end
+  end
+end
 
-  def end_game_announcement
+  def end_game
     if winner = @player
       puts "\n ------------ \n \n Player Won \n \n ------------ \n"
     elsif winner = @computer
@@ -69,12 +73,13 @@ class GameSetup
     puts "Would you like to play again?"
     puts "Type Yes or No"
     input = gets.chomp.upcase
-    if input == "YES"
+    if input == "YES" || input == "Y"
       welcome
-    elsif input == "NO"
+    elsif input == "NO" || input == "N"
       exit
     else
       p "INVALID INPUT"
     end
+  end
 
 end
