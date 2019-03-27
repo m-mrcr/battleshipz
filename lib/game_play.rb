@@ -8,7 +8,6 @@ class GamePlay
     @computer = computer
     @last_turn_player = last_turn_player
     @last_turn_computer = last_turn_computer
-    @fired_upon = []
   end
 
   def show_boards
@@ -54,10 +53,11 @@ class GamePlay
   end
 
   def computer_chooses_coordinate
-    input = @player.board.cells.keys.sample(1).first
-    unless @computer.board.cells[input].fired_upon?
+    input = @player.board.cells.keys.sample
+    if @player.board.cells[input].fired_upon? == true
+      computer_chooses_coordinate
+    else
       @player.board.cells[input].fire_upon
-      @fired_upon.push(input)
       @last_turn_computer = input
     end
     sleep(1)
