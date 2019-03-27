@@ -97,7 +97,7 @@ class BoardTest < MiniTest::Test
     assert_equal expected_1, @board.render
 
     @board.place(@cruiser, ["A1", "A2", "A3"])
-    assert_equal expected_2, @board.render
+    assert_equal expected_2, @board.render(true)
   end
 
 end

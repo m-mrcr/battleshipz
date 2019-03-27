@@ -22,7 +22,9 @@ class Cell
 
   def fire_upon
     @hit = true
-    @ship.hit
+    if @ship != nil
+      @ship.hit
+    end
   end
 
   def render(show_ships = false)

@@ -1,14 +1,12 @@
 class GameSetup
 
   attr_reader :computer,
-              :player,
-              :winner
+              :player
 
   def initialize
     @computer = Player.new(:computer)
     @player = Player.new(:player)
     @gameplay = GamePlay.new(@player, @computer)
-    @winner = nil
   end
 
   def welcome
@@ -31,24 +29,20 @@ class GameSetup
     loop do
       @gameplay.player_chooses_coordinate
       @gameplay.computer_chooses_coordinate
-      self.is_there_a_winner?
-    until
-        @winner != nil
-      break
+      if winner?
+        break
       end
+    end
     self.end_game
     self.replay?
   end
 
-  def is_there_a_winner?
-    case 
-    when @computer.ships.all? {|ship| ship.sunk?} == true
-      @winner = @player
-    when @player.ships.all? {|ship| ship.sunk?} == true
-      @winner = @computer
+  def winner?
+    if @computer.ships.all? {|ship| ship.sunk?} == true ||
+       @player.ships.all? {|ship| ship.sunk?} == true
+      return true
     end
   end
-end
 
   def end_game
     if winner = @player

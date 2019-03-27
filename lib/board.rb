@@ -4,6 +4,7 @@ class Board
 
   def initialize
     @cells = {}
+    @show_ships = false
     create_cells
   end
 
@@ -61,12 +62,8 @@ class Board
   end
 
   def place(ship, coordinates)
-    if valid_placement?(ship, coordinates) == true
-      coordinates.map do |c|
-        @cells[c].place_ship(ship)
-      end
-    else
-      p "Invalid Placement"
+    coordinates.map do |c|
+      @cells[c].place_ship(ship)
     end
   end
 

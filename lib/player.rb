@@ -20,7 +20,6 @@ class Player
     @ships.each do |ship|
 
       if name == :computer
-        potential_coordinates = []
         loop do
           potential_coordinates = @board.cells.keys.sample(ship.length)
           if @board.valid_placement?(ship, potential_coordinates)
@@ -33,7 +32,7 @@ class Player
         puts "#{@board.render} \n"
         loop do
           puts "Enter coordinates for the #{ship.name} (#{ship.length} spaces):"
-          puts "Example: A1 A2 A3"
+          puts "Example: A1 A2 (for Submarine) or B1 B2 B3 (for Cruiser)"
           puts "\n"
           input = gets.chomp.upcase.split(" ")
           puts "\n"
