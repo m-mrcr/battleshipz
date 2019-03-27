@@ -11,6 +11,14 @@ class Player
     add_ships
   end
 
+  def new_board
+    @board = Board.new
+  end
+
+  def clear_board
+    @board = nil
+  end
+
   def add_ships
     @ships = [Ship.new("Submarine", 2), Ship.new("Cruiser", 3)]
   end

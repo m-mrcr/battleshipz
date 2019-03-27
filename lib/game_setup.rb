@@ -68,6 +68,10 @@ class GameSetup
     puts "Type Yes or No"
     input = gets.chomp.upcase
     if input == "YES" || input == "Y"
+      @player.clear_board
+      @player.new_board
+      @computer.clear_board
+      @computer.new_board
       welcome
     elsif input == "NO" || input == "N"
       exit

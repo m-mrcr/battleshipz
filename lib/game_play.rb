@@ -59,13 +59,12 @@ class GamePlay
     else
       @player.board.cells[input].fire_upon
       @last_turn_computer = input
+      puts "\n"
+      show_boards
+      puts "Your shot on #{@last_turn_player} #{status(@last_turn_player, @computer)}"
+      puts "My shot on #{@last_turn_computer} #{status(@last_turn_computer, @player)}"
+      puts "\n"
     end
-    sleep(1)
-    puts "\n"
-    show_boards
-    puts "Your shot on #{@last_turn_player} #{status(@last_turn_player, @computer)}"
-    puts "My shot on #{@last_turn_computer} #{status(@last_turn_computer, @player)}"
-    puts "\n"
   end
 
 end
