@@ -4,12 +4,13 @@ class Board
 
   def initialize
     @cells = {}
+    @show_ships = false
     create_cells
   end
 
   def create_cells
-    numbers = (1..9)
-    letters = ("A".."I")
+    numbers = (1..4)
+    letters = ("A".."D")
     letters.each {|letter|
     numbers.each {|number|
       coordinate = "#{letter}#{number}"
@@ -61,12 +62,8 @@ class Board
   end
 
   def place(ship, coordinates)
-    if valid_placement?(ship, coordinates) == true
-      coordinates.map do |c|
-        @cells[c].place_ship(ship)
-      end
-    else
-      p "Invalid Placement"
+    coordinates.map do |c|
+      @cells[c].place_ship(ship)
     end
   end
 
@@ -75,10 +72,10 @@ class Board
     false
   end
 
-  def render(show_ships = true)
+  def render(show_ships = false)
     rows = @cells.keys.collect {|r| r[0]}.uniq
     columns = @cells.keys.collect {|c| c[1]}.uniq
-    header = " #{columns.join(' ')} \n"
+    header = "  #{columns.join(' ')} \n"
     body = ""
     rows.each { |r| body += "#{r} "
       columns.each { |c| body += "#{@cells["#{r}#{c}"].render(show_ships)} "}

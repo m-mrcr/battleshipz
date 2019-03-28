@@ -5,7 +5,7 @@ class Cell
   def initialize(coordinate)
     @coordinate = coordinate
     @ship       = nil
-    @hit        = false
+    @fire_upon  = false
   end
 
   def empty?
@@ -17,13 +17,14 @@ class Cell
   end
 
   def fired_upon?
-    @hit
+    @fire_upon
   end
-#this still allows for firing on the same cell
-#lets get this so the cell cannot be "hit" twice
+
   def fire_upon
-    @hit = true
-    @ship && @ship.hit
+    @fire_upon = true
+    if @ship != nil
+      @ship.hit
+    end
   end
 
   def render(show_ships = false)
